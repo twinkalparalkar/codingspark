@@ -16,7 +16,23 @@ height: 50%;
 margin-top: 10%;
 margin-left: 20%;
 padding: 4%;
-background-color: blanchedalmond;
+background-color: rgba(255, 235, 205, 0.475);
+color: black;
+
+}
+body{
+    background-image: url('https://images.pexels.com/photos/3293148/pexels-photo-3293148.jpeg?auto=compress&cs=tinysrgb&w=600');
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* background-size: cover; */
+  background-size: 100% 100%;
+}
+/* body {
+  background-image: url('img_girl.jpg');
+} */
+.col1{
+ margin-left: -180px;
+ margin-bottom: 10px;
 }
 </style>
 </head>
@@ -25,20 +41,33 @@ background-color: blanchedalmond;
     <div class="container">
         <div class="card">
             <form id="form">
-                <label for="Username">Username :</label>
-                <input type="text" id="username" required><br>
-                <label for="email">Email :</label>
-                <input type="email" id="email"required><br>
-                <label for="Phone">Phone number :</label>
-                <input type="number" id="phone"><br>
-                <label for="Password">Password :</label>
-                <input type="password" id="password" required><br>
-                <label for="Password_c">Confirm Password:</label>
-                <input type="password" id="password_c"required><br>
-                <input type="submit">
+                <div class="row">
+                    <div class="col"><label for="Username">Username :</label></div>
+                    <div class="col col1" ><input type="text" id="username" required><br></div>
+                </div>
+                <div class="row">
+                    <div class="col"><label for="email">Email :</label></div>
+                    <div class="col col1" ><input type="email" id="email" required><br></div>
+                </div>
+                <div class="row">
+                    <div class="col"><label for="Phone">Phone number :</label></div>
+                    <div class="col col1" ><input type="number" id="phone"><br></div>
+                </div>
+                <div class="row">
+                    <div class="col"><label for="Password">Password :</label></div>
+                    <div class="col col1" ><input type="password" id="password" required ><br></div>
+                </div>
+                <div class="row">
+                    <div class="col"><label for="Password_c">Confirm Password:</label></div>
+                    <div class="col col1" ><input type="password" id="password_c"required><br></div>
+                    <input type="submit" class="btn btn-success row-cols-md-1">
+                </div>
+                
+                
             </form>
             
         </div>
     </div>
+<script src="signup.js"></script>
 </body>
 </html>
