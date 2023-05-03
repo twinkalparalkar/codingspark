@@ -25,7 +25,7 @@ const login=async (req,res,next)=>{
               }
           })
       }else{
-          return res.status(400).json({success:false,mes:"User not exists"})
+          return res.status(404).json({success:false,mes:"User not exists"})
       }
   })
  

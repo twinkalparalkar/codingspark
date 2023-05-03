@@ -15,14 +15,14 @@ async function login_user(e){
         if(res.status==201){
             alert(res.data.mes)
             localStorage.setItem('token',res.data.token)
-            window.location.href="form.html"
+            window.location.href="chat.html"
         }
         else{
             throw new Error(res.data.mes)
         }
     }).catch(err=>{
-        alert('err.response.data.mes')
-        document.body.innerHTML+=`<div style="color:red;">${err.response.data.mes}</div>`
+        alert(err.response.data.mes)
+        // document.body.innerHTML+=`<div style="color:red;">${err.response.data.mes}</div>`
         
     })
     }catch(err){
