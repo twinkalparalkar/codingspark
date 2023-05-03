@@ -36,33 +36,6 @@ const login=async (req,res,next)=>{
   
 }
 
-// const login=async (req,res,next)=>{
-//   try{
-//       const b=req.body.email
-//   const c=req.body.password
-//   // console.log(req.body,c)
-  
-//   await User.findAll({where:{ email:b}}).then(user1=>{
-//       if(user1.length>0){
-//           bcrypt.compare(c,user1[0].password,(err,res1)=>{
-//               // console.log(err,res.status,res1,u[0].password,c)
-//               if(res1==true){
-//                   return res.status(201).json({success:true, mes:"Successfully login",token:generate(user1[0].id)})
-//               }else{
-//                   return res.status(400).json({success:false,mes:"Wrong password"})
-//               }
-//           })
-//       }else{
-//           return res.status(400).json({success:false,mes:"User not exists"})
-//       }
-//   })
- 
-//   }catch(err){
-//       res.status(500).json({success:false,mes:err})
-//       console.log(err)
-//   }
-  
-// }
 
 const signup = async (req, res, next) => {
     try {

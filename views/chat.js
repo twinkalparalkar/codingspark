@@ -5,29 +5,20 @@ async function chat_user(e){
     try{
         e.preventDefault()
     
-    const b=document.querySelector('#chat').value
+    const b=document.querySelector('#chat')
     const r=document.getElementsByClassName('card1')[0]
-    console.log(b,r)
+    // console.log(b.value,r)
     const c1=document.createElement('div')
-    c1.appendChild(document.createTextNode(`You:${b}`))
+    c1.appendChild(document.createTextNode(`You:${b.value}`))
     r.appendChild(c1)
     
-    // let j={email:b}
-    // await axios.post('http://localhost:3001/user/chat',j).then(res=>{
-    //     console.log(res.status)
-    //     if(res.status==201){
-    //         alert(res.data.mes)
-    //         localStorage.setItem('token',res.data.token)
-    //         window.location.href="chat.html"
-    //     }
-    //     else{
-    //         throw new Error(res.data.mes)
-    //     }
-    // }).catch(err=>{
-    //     alert(err.response.data.mes)
-    //     // document.body.innerHTML+=`<div style="color:red;">${err.response.data.mes}</div>`
-        
-    // })
+    let j={message:b.value}
+    // console.log(r)
+    const token=localStorage.getItem('token')
+    await axios.post('http://localhost:3001/user/chat',j,{headers:{"Authorization":token}})
+        // console.log(res.status)
+    
+        document.querySelector('#chat').value=""
     }catch(err){
         console.log(err)
     }
