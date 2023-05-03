@@ -10,7 +10,7 @@ async function login_user(e){
     const c=document.querySelector('#password').value
     console.log(b,c)
     let j={email:b,password:c}
-    await axios.post('http://localhost:3000/user/login',j).then(res=>{
+    await axios.post('http://localhost:3001/user/login',j).then(res=>{
         console.log(res.status)
         if(res.status==201){
             alert(res.data.mes)
@@ -21,7 +21,8 @@ async function login_user(e){
             throw new Error(res.data.mes)
         }
     }).catch(err=>{
-        document.body.innerHTML+=`<div style="color:red;">${err.message}</div>`
+        alert('err.response.data.mes')
+        document.body.innerHTML+=`<div style="color:red;">${err.response.data.mes}</div>`
         
     })
     }catch(err){

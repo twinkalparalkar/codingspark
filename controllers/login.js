@@ -1,40 +1,69 @@
 const User=require('../models/user')
 var bcrypt = require('bcryptjs');
+var jwt=require('jsonwebtoken')
+require("dotenv").config()
 
-// const signup=async (req,res,next)=>{
-//     try{
-//         const a=req.body.name
-//     const b=req.body.email
-//     const c=req.body.phone
-//     const d=req.body.password
-//     console.log(req.body)
-//     if(a== null || b==null|| c==null){
-//         return res.status(400).json({err:"bad param"})
-//     }
-//     const saltround=10
-//     let r=bcrypt.hash(d,saltround,async (err,hash)=>{
-//         await User.create({name:a,email:b,phone:c,password:hash})
-            
-//         return r.status(201).json({message:"Succefully create new user"})
-        
-//     })
-//     }catch(err){
-//         if (err.code === 'ER_DUP_ENTRY') {
-//             // Handle the duplicate entry error by displaying a message to the user
-//             console.error('Duplicate email address');
-//             return null;
-//           } else {
-//             // Handle any other errors by logging them and returning null
-//             console.error(err);
-//             return null;
-//           }
-//         // if(res.status==405){
-//         //     res.json({err:"duplicate email"})}
-//         //     // console.log(err)
-//         //     return res.status(500).json({err:"check email,password(User already exists)"})
-            
-//     }
+function generate(id){
+    return jwt.sign({userId:id},process.env.TOKEN_SECRET)
+}
+
+const login=async (req,res,next)=>{
+  try{
+      const b=req.body.email
+  const c=req.body.password
+  // console.log(req.body,c)
+  
+  await User.findAll({where:{ email:b}}).then(user1=>{
+      if(user1.length>0){
+          bcrypt.compare(c,user1[0].password,(err,res1)=>{
+              // console.log(err,res.status,res1,u[0].password,c)
+              
+              if(res1==true){
+                  return res.status(201).json({success:true, mes:"Successfully login",token:generate(user1[0].id)})
+              }else{
+                  return res.status(401).json({success:false,mes:"Wrong password"})
+              }
+          })
+      }else{
+          return res.status(400).json({success:false,mes:"User not exists"})
+      }
+  })
+ 
+  }catch(err){
+      res.status(500).json({success:false,mes:err})
+      console.log(err)
+  }
+  
+}
+
+// const login=async (req,res,next)=>{
+//   try{
+//       const b=req.body.email
+//   const c=req.body.password
+//   // console.log(req.body,c)
+  
+//   await User.findAll({where:{ email:b}}).then(user1=>{
+//       if(user1.length>0){
+//           bcrypt.compare(c,user1[0].password,(err,res1)=>{
+//               // console.log(err,res.status,res1,u[0].password,c)
+//               if(res1==true){
+//                   return res.status(201).json({success:true, mes:"Successfully login",token:generate(user1[0].id)})
+//               }else{
+//                   return res.status(400).json({success:false,mes:"Wrong password"})
+//               }
+//           })
+//       }else{
+//           return res.status(400).json({success:false,mes:"User not exists"})
+//       }
+//   })
+ 
+//   }catch(err){
+//       res.status(500).json({success:false,mes:err})
+//       console.log(err)
+//   }
+  
 // }
+
 const signup = async (req, res, next) => {
     try {
       const name = req.body.name;
@@ -68,5 +97,5 @@ const signup = async (req, res, next) => {
 
 
 module.exports={
-    signup
+    signup,login
 }
