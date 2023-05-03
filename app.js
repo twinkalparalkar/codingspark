@@ -9,7 +9,10 @@ const userRoute=require('./routes/user')
 require("dotenv").config()
 
 const app=ex()
-app.use(cors())
+app.use(cors({
+    origin:"*",
+    credentials:true
+}))
 app.use(bodyparse.json({extended:false}))
 
 
