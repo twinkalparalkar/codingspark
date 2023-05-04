@@ -31,24 +31,38 @@ window.addEventListener("DOMContentLoaded",()=>{
             const token=localStorage.getItem('token')
             
             // document.querySelector(".card1").innerHTML=""
-            let lastid=1
-            // let lastid=localStorage.getItem('lastid')
+            // let lastid=0
+            let lastid=localStorage.getItem('lastid')
             // if(!lastid){lastid=1}
             let r=await axios.get(`http://localhost:3001/user/display?lastid=${lastid}`,{headers:{"Authorization":token}})
             
-            console.log('pppppiii',r.data.update,r.data.lastid)
+            console.log('pppppiii',r.data.update,r.data.current_userid)
             // const old_mes={mes:"oppp"}
             // const y=[{op:123}]
             // const new_mes=[...y,...[old_mes]]
             localStorage.setItem('lastid',r.data.lastid)
-            localStorage.setItem('message',JSON.stringify(r.data.update))
-
-            let r1=localStorage.getItem('message')
-
-            console.log('123',r1)
-            for(var i=0;i<r.data.update.length;i++){
-                // console.log(r.data.update[i].username)
-                showall(r.data.update[i],r.data.current_userid)
+            let n1
+            if(r.data.update.length!==0){
+                console.log("kl",r.data.update)
+                if(localStorage.getItem('message')){
+                    console.log("123")
+                let r1=localStorage.getItem('message')
+                n1=[...r1,...JSON.stringify(r.data.update)]
+                // console.log('123',n1)
+                }
+                else{
+                    console.log("12455555")
+                    n1=JSON.stringify(r.data.update)
+            console.log(n1)
+                }
+            localStorage.setItem('message',n1)
+            }
+            const record=JSON.parse(localStorage.getItem('message'))
+            console.log(record[0])
+            
+            for(var i=0;i<record.length;i++){
+                console.log(r.data.current_userid)
+                showall(record[i],r.data.current_userid)
                 
             }
             
@@ -67,7 +81,8 @@ function showall(o,current_userid){
         // document.querySelector(".card1").innerHTML=""
         const r=document.querySelector(".card1")
         const c1=document.createElement('div')
-        let name=""
+        let name="kll"
+        console.log(o)
         if(o.userId==current_userid){ name="You"}
         else{ name=o.user.name}
 

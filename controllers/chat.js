@@ -30,14 +30,14 @@ const { Op } = require('sequelize');
 const display_chat = async (req, res, next) => {
     try {
       console.log("hjj",req.query.lastid)
-      const start=(req.query.lastid +1)||1
+      const start=(req.query.lastid)||0
 
       const lastid=await Chat.max('id')
         console.log('lpjjj',lastid)
         
-      const data = await Chat.findAll({where:{userId:{[Op.gt]: start}}},{
+      const data = await Chat.findAll({
         include: [{ model: User, attributes: ['name'] }],
-      });
+        where:{id:{[Op.gt]: start}}});
       console.log("op")
       const updatedData = data.map((d) => {
         if (d.User) {
