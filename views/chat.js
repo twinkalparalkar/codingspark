@@ -30,12 +30,22 @@ window.addEventListener("DOMContentLoaded",()=>{
         try{
             const token=localStorage.getItem('token')
             
-            // setInterval(, 1000)
-            document.querySelector(".card1").innerHTML=""
-            let r=await axios.get(`http://localhost:3001/user/display`,{headers:{"Authorization":token}})
+            // document.querySelector(".card1").innerHTML=""
+            let lastid=1
+            // let lastid=localStorage.getItem('lastid')
+            // if(!lastid){lastid=1}
+            let r=await axios.get(`http://localhost:3001/user/display?lastid=${lastid}`,{headers:{"Authorization":token}})
             
-            console.log('pppppiii',r.data)
-        
+            console.log('pppppiii',r.data.update,r.data.lastid)
+            // const old_mes={mes:"oppp"}
+            // const y=[{op:123}]
+            // const new_mes=[...y,...[old_mes]]
+            localStorage.setItem('lastid',r.data.lastid)
+            localStorage.setItem('message',JSON.stringify(r.data.update))
+
+            let r1=localStorage.getItem('message')
+
+            console.log('123',r1)
             for(var i=0;i<r.data.update.length;i++){
                 // console.log(r.data.update[i].username)
                 showall(r.data.update[i],r.data.current_userid)
@@ -47,8 +57,8 @@ window.addEventListener("DOMContentLoaded",()=>{
             console.log(err)
         }
     }
-    setInterval(getData, 3000)
-    // getData()
+    // setInterval(getData, 3000)
+    getData()
 })
 
 

@@ -15,14 +15,27 @@ const chat= async (req, res, next) => {
   };
 }
 
+const { Op } = require('sequelize');
+
+// const expenses = await Expense.findAll({
+//   where: {
+//     userId: {
+//       [Op.gt]: req.user.id
+//     }
+//   }
+// });
 
 
-// const Chat=require('../models/chat')
-// const User=require('../models/user')
+
 const display_chat = async (req, res, next) => {
     try {
-        console.log('lpjjj')
-      const data = await Chat.findAll({
+      console.log("hjj",req.query.lastid)
+      const start=(req.query.lastid +1)||1
+
+      const lastid=await Chat.max('id')
+        console.log('lpjjj',lastid)
+        
+      const data = await Chat.findAll({where:{userId:{[Op.gt]: start}}},{
         include: [{ model: User, attributes: ['name'] }],
       });
       console.log("op")
@@ -33,10 +46,10 @@ const display_chat = async (req, res, next) => {
           return { ...d.toJSON() };
         }
       });
-    //   console.log("ldf",updatedData)
-      return res.status(200).json({ update: updatedData,current_userid:req.user.id });
+      console.log("ldf",updatedData)
+      return res.status(200).json({ update: updatedData,current_userid:req.user.id,lastid:lastid });
     } catch (err) {
-        console.error(err)
+        console.log(err)
       return res.status(500).json({ error: err });
     }
   };
