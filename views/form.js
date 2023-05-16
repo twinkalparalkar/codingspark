@@ -23,7 +23,7 @@ async function additem(e){
         // console.log('jjjjjjj',token)
         let res=await axios.post("http://localhost:3000/user/additem",j,{headers:{"Authorization":token}})
         // console.log('mmmmmmm   ',res.data.new_data)
-        // showall(res.data.new_data)
+        showall(res.data.new_data)
         }
     }
     catch(err){
@@ -249,7 +249,7 @@ document.getElementById('razor').onclick=async function(e){
         document.getElementById('mes1').innerHTML=`You are a Preminum User `
         localStorage.setItem('token',res1.data.token)
         showLeaderboard()
-        download()
+        // download()
         } }
     const rzp1=new Razorpay(options);
     // console.log("rrrr",rzp1)

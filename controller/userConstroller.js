@@ -1,7 +1,7 @@
 const User=require('../model/user')
 const expense=require('../model/expense')
 require("dotenv").config()
-const sequelize = require('../model/database')
+// const sequelize = require('../model/database')
 
 
 const postreq=async (req,res,next)=>{
@@ -14,8 +14,9 @@ const postreq=async (req,res,next)=>{
         const b=req.body.expense
         const c=req.body.description
         // console.log(a,c,b)
-        const ex=await expense.create({category:a,expense1:b,description:c,userId:req.user.id},{transaction:t})
-            const totalex=Number(req.user.total)+Number(b)
+        // const ex=await expense.create({category:a,expense1:b,description:c,userId:req.user.id},{transaction:t})
+        const ex=new Expense(a,b,c)    
+        const totalex=Number(req.user.total)+Number(b)
             console.log(totalex,req.user)
             await User.update({total:totalex},{where:{id:req.user.id},transaction:t})
                 await t.commit()
