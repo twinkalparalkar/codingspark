@@ -11,6 +11,7 @@ const User=sequilize.define('user',{
         }
       },
     password:Sequelize.STRING
+    
 })
 
 
