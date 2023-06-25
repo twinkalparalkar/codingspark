@@ -1,6 +1,6 @@
 
 import Expense from './component/Expense';
-function App() {
+let App=() =>{
   const ex=[
     {id:1,title:"book1",amount:600},
     {id:2,title:"book2",amount:601},

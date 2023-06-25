@@ -1,6 +1,6 @@
 import './Expense.css'
 import  Expensedetail from './Expensedetail'
-function Expense(t1){
+let Expense=(t1)=>{
     const item1="Food"
     return (
         <div className="card1">

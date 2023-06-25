@@ -1,4 +1,4 @@
-function Expensedetail(props){
+let Expensedetail=(props)=>{
     const item1="Food"
     return (
 
