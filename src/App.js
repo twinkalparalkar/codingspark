@@ -1,26 +1,20 @@
 
-import './App.css';
 import Expense from './component/Expense';
 function App() {
+  const ex=[
+    {id:1,title:"book1"},
+    {id:2,title:"book2"},
+    {id:3,title:"book3"}
+  ]
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-        <div>
-        <h2>Let</h2>
-        <Expense></Expense>
-        </div>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      
+  
+        <Expense title={ex[0].title}></Expense>
+        <Expense title={ex[1].title}></Expense>
+        <Expense title={ex[2].title}></Expense>
         
-      </header>
     </div>
     
   );
