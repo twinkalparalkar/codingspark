@@ -1,6 +1,7 @@
 
 import Expense from './component/Expense';
 import  ExpenseForm from './component/ExpenseForm'
+
 let App=() =>{
   const ex=[
     {id:1,title:"book1",amount:600},
@@ -8,12 +9,19 @@ let App=() =>{
     {id:3,title:"book3",amount:700}
   ]
 
+  const saveformdataHandler=(enterexpensedata)=>{
+    const expenseData={
+      ...enterexpensedata,
+      id:Math.random().toString()
+    }
+    console.log(expenseData)
+  }
   return (
     <div className="App">
         <Expense title={ex[0].title} amount={ex[0].amount}></Expense>
         <Expense title={ex[1].title} amount={ex[1].amount}></Expense>
         <Expense title={ex[2].title} amount={ex[2].amount}></Expense>
-        <ExpenseForm/>
+        <ExpenseForm onSaveForm={saveformdataHandler}/>
     </div>
     
   );

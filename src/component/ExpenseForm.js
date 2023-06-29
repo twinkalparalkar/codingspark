@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import './ExpenseForm.css'
-let ExpenseForm=()=>{
+let ExpenseForm=(props)=>{
     const [title,enteredtitle]=useState('')
     const [amount,enteredamount]=useState('')
     const [date,entereddate]=useState('')
@@ -20,7 +20,7 @@ let ExpenseForm=()=>{
         //     title:event.target.value
         // })
         enteredtitle(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
     }
    
     const changeamount=(event)=>{
@@ -38,7 +38,7 @@ let ExpenseForm=()=>{
         //     date:event.target.value
         // })
         entereddate(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
     }
 
     const  submitHandler=(event)=>{
@@ -49,23 +49,27 @@ let ExpenseForm=()=>{
             date:new Date(date)
         }
         console.log(expenseData)
+        props.onSaveForm(expenseData)
+        enteredtitle('')
+        enteredamount('')
+        entereddate('')
     }
     return (
         <form className='Form' onSubmit={submitHandler}>
         <div>
             <div className='title'>
             <label>Title</label>
-            <input type="text" onChange={changetitle}/>
+            <input type="text" value={title} onChange={changetitle}/>
             </div>
 
             <div className='amount'>
             <label>Amount</label>
-            <input type="number" onChange={ changeamount}/>
+            <input type="number" value={amount} onChange={ changeamount}/>
             </div>
 
             <div className='date'>
             <label>Date</label>
-            <input type="date" max="2023-12-31" onChange={changedate}/>
+            <input type="date" max="2023-12-31" value={date} onChange={changedate}/>
             </div>
         </div>
         <div className='action'>
