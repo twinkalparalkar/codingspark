@@ -1,5 +1,6 @@
 import './Expense.css'
 import  Expensedetail from './Expensedetail'
+
 let Expense=(t1)=>{
     const item1="Food"
     return (
@@ -9,6 +10,7 @@ let Expense=(t1)=>{
             <div>
             <Expensedetail amount={t1.amount}   title={t1.title}></Expensedetail>
             </div>
+           
         </div>
     )
 }

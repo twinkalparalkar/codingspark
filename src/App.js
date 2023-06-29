@@ -1,5 +1,6 @@
 
 import Expense from './component/Expense';
+import  ExpenseForm from './component/ExpenseForm'
 let App=() =>{
   const ex=[
     {id:1,title:"book1",amount:600},
@@ -12,7 +13,7 @@ let App=() =>{
         <Expense title={ex[0].title} amount={ex[0].amount}></Expense>
         <Expense title={ex[1].title} amount={ex[1].amount}></Expense>
         <Expense title={ex[2].title} amount={ex[2].amount}></Expense>
-        
+        <ExpenseForm/>
     </div>
     
   );
