@@ -1,8 +1,22 @@
-// import {useState} from 'react'
+import {useState} from 'react'
 import './ExpenseForm.css'
 let ExpenseForm=()=>{
+    const [title,enteredtitle]=useState('')
+    const [amount,enteredamount]=useState('')
+    const [date,entereddate]=useState('')
     
-    const aftertype=(event)=>{
+    const changetitle=(event)=>{
+        enteredtitle(event.target.value)
+        console.log(event.target.value)
+    }
+   
+    const changeamount=(event)=>{
+        enteredamount(event.target.value)
+        console.log(event.target.value)
+    }
+   
+    const changedate=(event)=>{
+        entereddate(event.target.value)
         console.log(event.target.value)
     }
     return (
@@ -10,17 +24,17 @@ let ExpenseForm=()=>{
         <div>
             <div className='title'>
             <label>Title</label>
-            <input type="text" onChange={aftertype}/>
+            <input type="text" onChange={changetitle}/>
             </div>
 
             <div className='amount'>
             <label>Amount</label>
-            <input type="number" onChange={aftertype}/>
+            <input type="number" onChange={ changeamount}/>
             </div>
 
             <div className='date'>
             <label>Date</label>
-            <input type="date" max="2023-12-31" onChange={aftertype}/>
+            <input type="date" max="2023-12-31" onChange={changedate}/>
             </div>
         </div>
         <div className='action'>
