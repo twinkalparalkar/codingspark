@@ -4,18 +4,39 @@ let ExpenseForm=()=>{
     const [title,enteredtitle]=useState('')
     const [amount,enteredamount]=useState('')
     const [date,entereddate]=useState('')
-    
+
+    // const [userInput, setUserInput]=useState({
+    //     title:'',
+    //     amount:'',
+    //     date:''
+    // })
+
     const changetitle=(event)=>{
+        // setUserInput((prev)=>{
+        //     return {...prev,title:event.target.value}
+        // })
+        // setUserInput({
+        //     ...userInput,
+        //     title:event.target.value
+        // })
         enteredtitle(event.target.value)
         console.log(event.target.value)
     }
    
     const changeamount=(event)=>{
+        // setUserInput({
+        //     ...userInput,
+        //     amount:event.target.value
+        // })
         enteredamount(event.target.value)
         console.log(event.target.value)
     }
    
     const changedate=(event)=>{
+        // setUserInput({
+        //     ...userInput,
+        //     date:event.target.value
+        // })
         entereddate(event.target.value)
         console.log(event.target.value)
     }
