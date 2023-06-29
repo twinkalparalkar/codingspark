@@ -11,7 +11,7 @@ let Expensedetail=(props)=>{
 
     return (
 
-       <div> Amount:{amount} --title:{props.title} --date{props.date}
+       <div> Amount:{amount}  ||  title:{props.title}   ||  date{props.date}
        <button onClick={clickHandler} >Change Title</button>
        </div>
         

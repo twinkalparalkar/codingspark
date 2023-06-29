@@ -18,10 +18,11 @@ let Expense=(props)=>{
     return (
         <div className="card1">
             <ExpenseFilter selected={filterdYear} onChangeFilter={filteredHandler}/>
-            <Expensedetail amount={props.item[0].amount}   title={props.item[0].title} date={props.item[0].date}></Expensedetail>
-            <Expensedetail amount={props.item[1].amount}   title={props.item[1].title} date={props.item[2].date}></Expensedetail>
-            <Expensedetail amount={props.item[2].amount}   title={props.item[1].title} date={props.item[2].date}></Expensedetail>
+            {props.item.map(expense=><Expensedetail
+                key={expense.id}
+                title={expense.title}  amount={expense.amount}  date={expense.date}/>)}
 
+            
         </div>
     )
 }
