@@ -16,21 +16,34 @@ let Expense=(props)=>{
         setFilterYear(selected)
     }
     console.log("kk",filterdYear)
+    const filteredExpense=props.item.filter(ex=>{
+        return ex.date.getFullYear().toString()===filterdYear
+    })
+
+    let expenseContent = <p>No expense found</p>;
+
+if (filteredExpense.length > 0) {
+  expenseContent = filteredExpense.map(expense => (
+    <Expensedetail
+      key={expense.id}
+      title={expense.title}
+      amount={expense.amount}
+      date={expense.date.toString()}
+    />
+  ));
+
+  if (filteredExpense.length === 1) {
+    expenseContent = [
+      ...expenseContent,
+      <p key="additional-text">Only single Expense here. Please add more...</p>
+    ];
+  }
+}
+    console.log(expenseContent,typeof(expenseContent))
     return (
         <div className="card1">
             <ExpenseFilter selected={filterdYear} onChangeFilter={filteredHandler}/>
-
-            {props.item.filter(expense =>{
-                if(expense.date.getFullYear() =="2020"){
-                    return expense
-                }
-            }).map(expense => (
-                <Expensedetail
-                    key={expense.id}
-                    title={expense.title}
-                    amount={expense.amount}
-                    date={expense.date.toString()}
-                />))}
+            {expenseContent}
             
         </div>
     )
