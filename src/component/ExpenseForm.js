@@ -54,6 +54,14 @@ let ExpenseForm=(props)=>{
         enteredamount('')
         entereddate('')
     }
+
+    // const formdisplay = (ex) => {
+    //     setShowForm(true);
+    //     console.log("formdisplay1");
+    //   };
+      
+    //   const [showForm, setShowForm] = useState(false);
+    
     return (
         <form className='Form' onSubmit={submitHandler}>
         <div>
@@ -73,8 +81,13 @@ let ExpenseForm=(props)=>{
             </div>
         </div>
         <div className='action'>
-        <button type="submit" >Add Expense</button></div>
+        <button>Cancel</button>
+        <button type="submit" onClick={formdisplay} >Add Expense</button>
+        
+        </div>
         </form>
+        
         )
 }
 export default ExpenseForm;
+// {showForm && <button>Cancel</button>}

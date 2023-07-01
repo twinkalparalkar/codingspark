@@ -1,21 +1,29 @@
 import ExpenseForm from "./ExpenseForm";
+import { useState } from "react";
 
-let NewExpense=(props)=>{
-    const saveformdataHandler=(enterexpensedata)=>{
-        const expenseData={
-          ...enterexpensedata,
-          id:Math.random().toString()
-        }
-        console.log(expenseData)
-        props.onAddExpense(expenseData)
-      }
-    
-    return (
+const NewExpense = (props) => {
+  const saveformdataHandler = (enterexpensedata) => {
+    const expenseData = {
+      ...enterexpensedata,
+      id: Math.random().toString(),
+    };
+    console.log(expenseData);
+    props.onAddExpense(expenseData);
+  };
 
-       <div> 
-       <ExpenseForm onSaveForm={saveformdataHandler}/>
-       </div>
-        
-        )
-}
+  const formdisplay = (ex) => {
+    setShowForm(true);
+    console.log("formdisplay1");
+  };
+
+  const [showForm, setShowForm] = useState(false);
+
+  return (
+    <div>
+      {!showForm && <button onClick={formdisplay}>Add Expense</button>}
+      {showForm && <ExpenseForm onSaveForm={saveformdataHandler} />}
+    </div>
+  );
+};
+
 export default NewExpense;
