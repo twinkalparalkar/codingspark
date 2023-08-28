@@ -1,0 +1,13 @@
+.card{
+    background-color: aquamarine;
+    border-radius: 4px;
+    padding:1 rem;
+    width:20%;
+    height:40 px;
+
+}
+.btn{
+    background-color: red;
+    text-align: left;
+    color: aliceblue;
+}
