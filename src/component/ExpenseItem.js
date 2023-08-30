@@ -1,15 +1,20 @@
-function ExpenseItem(){
+import './ExpenseItem.css'
+
+function ExpenseItem() {
     return (
-        <div>
-        <h1>Expense Items !!</h1>
-        <div><h2>title</h2></div>
-        <div><h2>Amount</h2></div>
-        <div><h2>Food</h2></div>
-        <div><h2>Rs 120</h2></div>
-        <div><h2>Petrol</h2></div>
-        <div><h2>Rs 200</h2></div>
+        <div className="expense-item">
+            <div className="expense-date">
+                <h4>March 6 2021</h4>
+            </div>
+            <div className="expense-name">
+                <h2>Food</h2>
+            </div>
+            <div className="expense-amount">
+                <h2>Rs 120</h2>
+            </div>
+
         </div>
     )
-    
+
 }
 export default ExpenseItem;
