@@ -1,7 +1,7 @@
 .expense-item{
     width:80%;
     height: 100px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     /* text-align: center; */
     margin-left: 50px;
     display: inline-block; 

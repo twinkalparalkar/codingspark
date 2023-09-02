@@ -1,0 +1,8 @@
+.expense-date{
+border: rebeccapurple solid 2px ;
+border-radius: 6px;
+background-color: rgb(201, 159, 240);
+color: aliceblue;
+font: size 30px;
+margin-top: 13px;
+}
