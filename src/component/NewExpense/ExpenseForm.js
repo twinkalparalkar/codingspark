@@ -36,20 +36,24 @@ function ExpenseForm(props) {
             Amount:enteredAmount,
             Date:new Date(enteredDate)
         }
-        console.log(expenseData)
+        
+        props.onSaveExpenseData(expenseData)
+        setTitle('')
+        setAmount('')
+        setDate('')
     }
 
     return (
         <Card>
             <form onSubmit={SubmitHandler} className='form'>
                 <label>Expense Title:</label>
-                <input type="text"
+                <input type="text" value={enteredtitle}
                     onChange={TitleChangehandler}/><br/>
                 <label>Expense Amount:</label>
-                <input type="number"
+                <input type="number" value={enteredAmount}
                     onChange={AmountChangehandler}/><br/>
                 <label>Expense Date:</label>
-                <input type="date" min="2023-01-01" max="2030-12-31"
+                <input type="date" min="2023-01-01" max="2030-12-31" value={enteredDate}
                     onChange={DateChangehandler}/><br/>
 
                 <input type="submit" className='submit'/>
