@@ -6,7 +6,9 @@ const NewExpense=(props)=>{
         id:Math.random()
          }
     props.onAddHandler(expenseData)
+    console.log("new",expenseData)
         }
+        
     return (
         <div>
         <ExpenseForm onSaveExpenseData={ExpenseData}/>

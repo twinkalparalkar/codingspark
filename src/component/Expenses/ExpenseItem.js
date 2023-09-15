@@ -18,6 +18,7 @@ function ExpenseItem(props) {
         console.log(expense)
     }
     return (
+        <li>
         <Card className="expense-item">
             <ExpenseDate date={props.date}/>
             
@@ -29,7 +30,7 @@ function ExpenseItem(props) {
             </div>
             <button onClick={clickHandler}>Change title</button>
             <button onClick={clickHandler1}>Change Expense</button>
-        </Card>
+        </Card></li>
     )
 
 }
