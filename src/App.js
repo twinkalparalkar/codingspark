@@ -10,7 +10,7 @@ const dummy_expenses = [
         id: 'e1',
         title: "Food",
         amount: 200,
-        date: new Date(2021, 7, 7)
+        date: new Date(2021, 3, 7)
     }, {
         id: 'e2',
         title: "movie",
@@ -20,7 +20,7 @@ const dummy_expenses = [
         id: 'e3',
         title: "travelling",
         amount: 800,
-        date: new Date(2021, 7, 7)
+        date: new Date(2021, 2, 7)
     }, {
         id: 'e4',
         title: "home",
