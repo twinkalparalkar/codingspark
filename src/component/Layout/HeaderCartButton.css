@@ -1,0 +1,15 @@
+.button1{
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(49, 113, 4, 0.781);
+    color: white;
+    font-size: 20px;
+   
+    position:fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.265);
+    z-index: 10;
+}
