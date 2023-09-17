@@ -1,4 +1,5 @@
 import './AvailableMeals.css'
+import MealItem from './MealItem'
 let DummyMeals=[
     {
         id:'f1',
@@ -26,19 +27,12 @@ let DummyMeals=[
     }
 ]
 function AvailableMeals(){
-    let meals=DummyMeals.map((meal)=>{
-       return <li>
-        <h4><b>{meal.name}</b></h4>
-        <p><i>{meal.description}</i></p>
-        <p className="price">${meal.price}</p>
-        <hr/>
-        </li>
-    })
+
     
     return (
         <div className='frame'>
         <ul className='ul'>
-        {meals}
+        <MealItem items={DummyMeals}/>
         </ul>
         </div>
     )

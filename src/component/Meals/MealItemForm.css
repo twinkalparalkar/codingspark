@@ -1,0 +1,19 @@
+.form{
+    text-align: right;
+    margin-top: -120px;
+    margin-bottom: 60px;
+  
+}
+.form button{
+    background-color:   rgba(202, 3, 3, 0.826);
+    color:white;
+    border-radius: 20px;
+    border: rgba(202, 3, 3, 0.826) ;
+    font-size: medium;
+    padding: 6px 25px 6px 25px;
+    margin-top: 10px;
+}
+.form input{
+    width: 30px;
+    margin-left: 10px;
+}
