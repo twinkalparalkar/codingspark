@@ -14,10 +14,10 @@ function App() {
     
   }
   return (
-    <div className="App">
-      <header >
-        <User data={userdata}/>
+    <div >
+      <header className='App' >
         <NewUser OnAddUsers={OnAddUserHandler}/>
+        <User Userdata={userdata}/>
       </header>
     </div>
   );

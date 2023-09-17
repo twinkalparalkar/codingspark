@@ -1,4 +1,6 @@
+import Card from "../UI/Card"
 import UserForm from "./UserForm"
+
 function NewUser(props){
 
     const UserDataHandler=(user)=>{
@@ -8,9 +10,9 @@ function NewUser(props){
         props.OnAddUsers(user1)
     }
     return(
-        <div>
+        <Card>
            <UserForm OnSaveUserData={UserDataHandler}/>
-        </div>
+        </Card>
     )
 }
 export default NewUser
