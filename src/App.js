@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Header from "./component/Layout/Header";
 import Intro from "./component/Layout/Intro";
 import AvailableMeals from "./component/Meals/AvailableMeals";
+import CartContent from "./component/Cart/CartContent";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
     <Header/>
     <Intro/>
     <AvailableMeals/>
+    <CartContent/>
     </Fragment>
   );
 }

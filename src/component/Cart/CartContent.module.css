@@ -1,0 +1,35 @@
+.backdrop{
+    position:fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index:10;
+    background: rgba(0, 0, 0, 0.726);
+}
+
+.modal{
+    position:fixed;
+    top:30vh;
+    left: 10%;
+    width: 80%;
+    z-index:100;
+    overflow: hidden;
+    background-color: azure;
+    border-radius: 4px;
+}
+
+.header{
+    background: white;
+    padding: 1rem;
+}
+.modal order{
+    background-color:crimson;
+    border-radius: 3px;
+    border:none;
+   font:inherit;
+   font-size: medium;
+   padding: 0.25 rem;
+   margin-bottom: 10px;
+   
+}
