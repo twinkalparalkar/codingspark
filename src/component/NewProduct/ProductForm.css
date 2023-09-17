@@ -1,0 +1,8 @@
+.button1{
+    background-color:rgb(254, 26, 129);
+    color: white;
+    border:none;
+   font:inherit;
+   padding: 0.25 rem;
+   margin-top: 10px;
+}

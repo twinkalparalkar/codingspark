@@ -1,9 +1,10 @@
 import React,{useState} from 'react'
+import './ProductForm.css'
 function ProductForm(props){
     const [enteredProductId,setProductId]=useState('')
     const [enteredPrice,setPrice]=useState('')
     const [enteredProductName,setProductName]=useState('')
-    const [enteredCategory,setCategory]=useState('')
+    const [enteredCategory,setCategory]=useState('Electronic')
 
     const ChangeProductIdHandler=(e)=>{
         setProductId(e.target.value)
@@ -18,8 +19,22 @@ function ProductForm(props){
     const ChangeCategoryHandler=(e)=>{
         setCategory(e.target.value)
     }
+    
     const onSubmitHandler=(e)=>{
         e.preventDefault();
+        
+        const ProductData={
+            productid:enteredProductId,
+            price:enteredPrice,
+            productname:enteredProductName,
+            category:enteredCategory
+        }
+       
+        props.onSaveData(ProductData)
+        setProductId('')
+        setPrice('')
+        setProductName('')
+       
     }
     return (<div>
         <form onSubmit={onSubmitHandler}>
@@ -42,12 +57,13 @@ function ProductForm(props){
                 <select id="Category"
                     value={enteredCategory}
                     onChange={ChangeCategoryHandler}>
-                    <option>Electronic</option>
-                    <option>Food</option>
-                    <option>Skincare</option>
+
+                    <option value="Electronic">Electronic</option>
+                    <option value="Food">Food</option>
+                    <option value="Skincare">Skincare</option>
                     </select><br/><br/>
 
-                <input type="submit" className='button' value="Add User"/><br/>
+                <input type="submit" className='button1' value="Add User"/><br/>
             </form>
         </div>)
 }
