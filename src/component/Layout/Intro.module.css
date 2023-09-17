@@ -1,0 +1,13 @@
+.frame{
+    margin-left: 290px;
+    width:fit-content;
+    height: 220px;
+    background-color: #4a4949;
+    border-radius: 10px;
+    text-align: center;
+    color:white;
+    padding: 10px;
+    margin-top: -100px;
+    display: inline-block;
+
+}

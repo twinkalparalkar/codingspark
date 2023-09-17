@@ -7,8 +7,7 @@ function Header() {
     return (
         <Fragment>
             <header className={
-                classes.header
-            }>
+                classes.header}>
                 <h3>ReactMeals</h3>
                 <HeaderCartButton/>
             </header>

@@ -1,0 +1,26 @@
+.button{
+    font-size: medium;
+    font-weight:bold;
+    height: 50px;
+    width: 200px;
+    color:white;
+    text-align: center;
+    border: rgba(0, 0, 0, 0.29);
+    background-color:rgba(0, 0, 0, 0.29);
+    border-radius: 30px;
+}
+.icon{
+    height: 25px;
+    background-color: rgba(0, 0, 0, 0.29);
+    border-radius: 2px;
+    margin-top:4px;
+    margin-right: 13px;
+}
+.badge{
+    height: 100px;
+    width: 40px;
+    background-color: rgba(235, 11, 11, 0.826);
+    margin-left: 10px;
+    border-radius: 2px;
+
+}
