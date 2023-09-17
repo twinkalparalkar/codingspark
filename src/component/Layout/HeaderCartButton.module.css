@@ -6,7 +6,7 @@
     color:white;
     text-align: center;
     border: rgba(0, 0, 0, 0.29);
-    background-color:rgba(0, 0, 0, 0.29);
+    background-color:rgba(0, 0, 0, 0.468);
     border-radius: 30px;
 }
 .icon{
@@ -18,9 +18,11 @@
 }
 .badge{
     height: 100px;
-    width: 40px;
-    background-color: rgba(235, 11, 11, 0.826);
+    width: 20px;
+    margin-top: -30rem;
+    background-color: rgba(202, 3, 3, 0.826);
     margin-left: 10px;
-    border-radius: 2px;
-
+    border-radius: 14px;
+    padding: 10px;
+    
 }
