@@ -1,5 +1,12 @@
+
 import classes from './CartContent.module.css'
-function CartContent(){
+
+function CartContent(props){
+    
+
+    const closeCartHandler=()=>{
+        props.OnCancel(false)
+    }
     return(
         <div className={classes.backdrop}>
         <div className={classes.modal}>
@@ -7,8 +14,8 @@ function CartContent(){
         <div className={classes.header}>Total Amount  $39.00
         </div>
 
-        <button>Cancel</button>
-        <button className={classes.modal.order}>Order
+        <button onClick={closeCartHandler} className={classes.cancel}>Cancel</button>
+        <button className={classes.order}>Order
         </button>
         </div>
         </div>
