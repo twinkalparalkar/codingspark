@@ -20,6 +20,7 @@
     text-align: center;
     padding: 20px 60px 20px 60px;
 margin-left: 290px;
+list-style: none;
 }
 
 .header{
@@ -28,7 +29,7 @@ margin-left: 290px;
 }
 .order{
     background-color:crimson;
-    border-radius: 3px;
+    border-radius: 15px;
     border:none;
    font:inherit;
    font-size: medium;
@@ -40,13 +41,18 @@ margin-left: 290px;
 }
 .cancel{
    background-color: white;
-    border-radius: 3px;
+    border-radius: 15px;
     border:solid crimson;
    font:inherit;
    font-size: medium;
    padding: 0.25 rem;
    margin-bottom: 10px;
-   color:black;
+   color:crimson;
    margin-left: 10px;
    
+}
+
+.price{
+    margin-left: 20px;
+    color:crimson;
 }
