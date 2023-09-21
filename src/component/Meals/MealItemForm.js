@@ -11,7 +11,7 @@ const handleQuantityChange = (event) => {
     const cartctx = useContext(CartContext)
     const AddItemHandler = (e) => {
         e.preventDefault()
-        const quantity = document.getElementById('amount_' + props.id).value
+       
         cartctx.addItem({...props.item1,quantity: quantity})
         console.log("kkk", cartctx, props.item1, {...props.item1,quantity: quantity})
     }

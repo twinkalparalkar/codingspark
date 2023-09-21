@@ -1,29 +1,37 @@
 import CartContext from "./cart-contex";
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 const CartProvider = (props) => {
-  const [cartItems, setCartItems] = useState([]); // Use a more descriptive variable name, like cartItems
+    const [cartItems, setCartItems] = useState([]); // Use a more descriptive variable name, like cartItems
 
-  const addItemHandler = (item) => {
-    // Use the state updater function to correctly update the state
-    setCartItems((prevCartItems) => [...prevCartItems, item]);
-  };
+    const addItemHandler = (item) => {
+        const existingList = cartItems.filter((item1) => (item1.id === item.id))
 
-  const removeItemHandler = (id) => {
-    // Implement your logic for removing items from the cart here
-  };
+        if (existingList.length === 0) {
+            setCartItems((prevCartItems) => [
+                ...prevCartItems,
+                item
+            ])
+        } else {
+            existingList[0].quantity += 1
+        }
+    };
 
-  const cartContext = {
-    items: cartItems, // Change 'item' to 'items' for consistency
-    addItem: addItemHandler,
-    removeItem: removeItemHandler,
-  };
+    const removeItemHandler = (id) => { // Implement your logic for removing items from the cart here
+    };
 
-  return (
-    <CartContext.Provider value={cartContext}>
-      {props.children}
-    </CartContext.Provider>
-  );
+    const cartContext = {
+        items: cartItems, // Change 'item' to 'items' for consistency
+        addItem: addItemHandler,
+        removeItem: removeItemHandler
+    };
+
+    return (
+        <CartContext.Provider value={cartContext}>
+            {
+            props.children
+        } </CartContext.Provider>
+    );
 };
 
 export default CartProvider;

@@ -17,10 +17,11 @@
     overflow: hidden;
     background-color:white;
     border-radius: 4px;
-    text-align: center;
-    padding: 20px 60px 20px 60px;
+    text-align: justify;
+    padding: 10px 10px 10px 10px;
 margin-left: 290px;
 list-style: none;
+margin-bottom: 100px;
 }
 
 .header{
@@ -53,6 +54,18 @@ list-style: none;
 }
 
 .price{
-    margin-left: 20px;
+    
     color:crimson;
+    font-size: small;
+}
+.quantity{
+    display: inline-flexbox;
+    font-size: smaller;
+    flex-wrap: inherit;
+    width:30px;
+    height:min-content;
+border:1px solid rgba(0, 0, 0, 0.685);
+border-radius: 4px;
+font-weight: bold;
+
 }
