@@ -1,20 +1,29 @@
 import classes from './CartContent.module.css'
 import CartContext from '../../store/cart-contex'
 import {useContext} from 'react'
-import { useState } from 'react'
+import Removeitem from './Removeitem'
+import Additem from './Additem'
 function CartContent(props) {
-    const [totalamount,settotalamount]=useState(0)
-    const items = useContext(CartContext).items
-    console.log("kjhh", items,totalamount)
+    const cartContext = useContext(CartContext)
+
     
-    const ChangeAmountHandler=()=>{
-        settotalamount(50)
-    }
+    let total=0
+    cartContext.items.map((item)=>(
+            total+=(item.price*item.quantity)
+        ))
 
     const closeCartHandler = () => {
         props.OnCancel(false)
     }
 
+    const RefreshQuantity = () => {
+        // Calculate the total again after an item is removed
+        let newTotal = 0;
+        cartContext.items.forEach((item) => {
+            newTotal += item.price * item.quantity;
+        });
+        total = newTotal;
+    };
     return (
         <div className={
             classes.backdrop
@@ -23,7 +32,7 @@ function CartContent(props) {
                 classes.modal
             }>
                 {
-                items.map((item) => (
+                    cartContext.items.map((item) => (
                     <li key={
                         item.id
                     }>
@@ -40,13 +49,14 @@ function CartContent(props) {
                         }>x{
                             item.quantity
                         }</span>&emsp;&emsp;&emsp;
-                        <button onClick={ChangeAmountHandler}>-</button>
-                        <button onClick={ChangeAmountHandler}>+</button><hr/></li>
+                        <Removeitem  item={item} onRefresh={RefreshQuantity}/>
+                        <Additem item={item} onRefresh={RefreshQuantity}/>
+                        <hr/></li>
                 ))
             }
                 <div className={
                     classes.header
-                }>Total Amount  $39.00
+                }>Total Amount  ${total}
                 </div>
 
                 <button onClick={closeCartHandler}
