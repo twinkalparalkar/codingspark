@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { useState } from 'react';
+import './App.css';
+import ProductForm from './component/ProductForm';
+import ProductList from './component/ProductList';
+import CartContent from './component/Cart/CartContent';
+let Dummy=[]
 function App() {
+  const [Productlist,setProduct]=useState(Dummy)
+
+  const OnAddProductData=(data)=>{
+    console.log("kk",data)
+    setProduct((pre)=>{
+    return [...pre,data]})
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <div className="header" ><header ><h2>Shoe Shopping</h2>
+    <CartContent/>
+    </header></div>
+    
+    <div className="ProductForm"><ProductForm  onAdd={OnAddProductData}/></div>
+    <hr/>
+    <ProductList items={Productlist}/>
     </div>
   );
 }
