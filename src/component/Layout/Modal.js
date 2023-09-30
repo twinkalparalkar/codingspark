@@ -23,7 +23,7 @@ function Modalcart(props){
         
         
     return (
-<Modal show={props.show} onHide={props.onHide} style={{
+<Modal  show={props.show} onHide={props.onHide} style={{
     width: "500px",
     height: "700px",
     minHeight:"100vh",
