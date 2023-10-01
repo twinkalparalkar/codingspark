@@ -26,7 +26,7 @@ function Header() {
             <Nav className="justify-content-center" style={{marginLeft:'300px'}}>
               <Nav.Link href="#home" style={linkStyle}  >HOME</Nav.Link>
               <Nav.Link href="#link" style={linkStyle}  >STORE</Nav.Link>
-              <Nav.Link href="#link" style={linkStyle}  >ABOUT</Nav.Link>
+              <Nav.Link href="/about" style={linkStyle}  >ABOUT</Nav.Link>
               <Button onClick={handleShow} style={{marginLeft:'300px',backgroundColor:"black",
               color:"white",border:'solid 3px white'}}>Cart</Button>
               <span style={{color:"white",marginLeft:'10px'}}>{Total}</span>
