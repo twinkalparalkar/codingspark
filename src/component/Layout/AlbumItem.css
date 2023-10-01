@@ -1,0 +1,27 @@
+.zoom-image {
+    transform-origin: center center;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    padding:0px;
+    margin:0px;
+    transition: ease-in 0.5s;
+    filter: brightness(100%);
+    
+  }
+  .image-container{
+    height: 250px;
+    width: 250px;
+    overflow: hidden;
+}
+  .zoom-image:hover {
+    /* Scale the image to 1.1 (10% zoom) on hover */
+    transform: scale(1.5);
+    filter: brightness(130%);
+  }
+
+ 
+  
+  
+  
+  
