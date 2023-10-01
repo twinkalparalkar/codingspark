@@ -24,7 +24,7 @@ function Header() {
         <Container>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="justify-content-center" style={{marginLeft:'300px'}}>
-              <Nav.Link href="#home" style={linkStyle}  >HOME</Nav.Link>
+              <Nav.Link href="/index" style={linkStyle}  >HOME</Nav.Link>
               <Nav.Link href="#link" style={linkStyle}  >STORE</Nav.Link>
               <Nav.Link href="/about" style={linkStyle}  >ABOUT</Nav.Link>
               <Button onClick={handleShow} style={{marginLeft:'300px',backgroundColor:"black",

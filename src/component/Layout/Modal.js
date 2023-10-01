@@ -37,7 +37,7 @@ function Modalcart(props){
                 </Col>
                 <Col>
                     <span style={{padding:"7px",border:"solid 2px #56CCF2",marginRight:"10px"}}>{item.quantity}</span>
-                    <Button variant="danger">Remove</Button>
+                    <Button variant="danger" >Remove</Button>
                     <hr/>
                 </Col>
             </Row>

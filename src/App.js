@@ -8,6 +8,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import "../node_modules/react-bootstrap/dist/react-bootstrap"
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import About from './component/Layout/About';
+import Home from './component/Layout/Home';
 
 let Dummy_data= [
   {
@@ -35,9 +36,11 @@ let Dummy_data= [
   imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
   }
 ]
+
 const router1=createBrowserRouter([
   {path:"/",element:<AlbumList items={Dummy_data}/>},
-  {path:"/about",element:<About/>}
+  {path:"/about",element:<About/>},
+  {path:"/index",element:<Home/>}
 ])
 
   
