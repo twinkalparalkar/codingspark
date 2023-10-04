@@ -4,11 +4,17 @@ import "./Home.css"
 function Home(){
     const [movie,setMovie]=useState([])
     const [isLoading,setLoading]=useState(false)
+    const [error,setError]=useState(null)
+
     async function MovieHandler(){
         setLoading(true)
-        const res=await fetch("https://swapi.dev/api/films/")
-        const data=await res.json()
+        setError(null)
+        try{
+            const res=await fetch("https://swapi.dev/api/films/")
+        if(!res.ok){
+            throw new Error("Something went wrong ....Retrying")}
 
+        const data=await res.json()
         const transformeddata=data.results.map(movie=>{
                 return {id:movie.episode_id,
                 title:movie.title,
@@ -18,6 +24,14 @@ function Home(){
             })
         setMovie(transformeddata)   
         setLoading(false)
+        }
+        catch(error){
+            console.log(error.message)
+            let m=error.message
+            setError(m)
+            setLoading(false)
+        }
+       
     }
     return (
 <div>
@@ -42,7 +56,8 @@ function Home(){
     </div>
     <p style={{fontFamily:"Cursive",fontSize:"30px", padding:"40px"}}><b>MOVIES</b></p>
     <Container style={{width:"75%"}}>
-        {isLoading ? <h1>Loading <div className="spinner"></div></h1>: movie.map((m)=>(
+        {error}
+        {isLoading ? <h1>Loading... <div className="spinner"></div></h1>: movie.map((m)=>(
         <Row key={m.id}>
             <Col>{m.release_date}</Col>
             <Col>{m.title}</Col>
