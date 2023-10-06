@@ -1,6 +1,7 @@
 import { Container,Row,Col,Button } from "react-bootstrap"
 import {useState,useEffect }from 'react'
 import "./Home.css"
+import FormMovie from "./FormMovie"
 function Home(){
     const [movie,setMovie]=useState([])
     const [isLoading,setLoading]=useState(false)
@@ -36,25 +37,19 @@ function Home(){
     }
     return (
 <div>
-    <div style={{backgroundColor:"gray",marginTop:"-15px",height:"180px",width:"100%",color:"white",
-    fontSize:"30px",alignItems:"center"}}>
-        <p style={{border:"solid 2px #56CCF2",width:"300px",marginLeft:"480px"}}
-        onClick={MovieHandler}>Get our Latest Movie</p>
+    <div style={{backgroundColor:"gray",marginTop:"-15px",height:"180px",width:"100%",color:"white",fontSize:"30px",alignItems:"center"}}>
+        <p style={{border:"solid 2px #56CCF2",width:"300px",marginLeft:"480px"}} onClick={MovieHandler}>
+            Get our Latest Movie
+        </p>
         <div style={{border:"solid 2px #56CCF2",borderRadius:"100%",width:"80px",height:"80px",marginLeft:"580px"}}>
-        <div style={{border:"0",
-        background: "transparent",
-        boxSizing: "border-box",
-        width: "0",
-        height: "20px",
-        borderColor:"transparent transparent transparent #56CCF2",
-        transition: "100ms all ease",
-        cursor: "pointer",
-        borderStyle: "solid",
-        borderWidth: "17px 0 17px 30px",margin:"20px 0px 0px 23px"}}>
+            <div style={{border:"0",background: "transparent",boxSizing: "border-box",width: "0",
+            height: "20px",borderColor:"transparent transparent transparent #56CCF2",transition: "100ms all ease",
+            cursor: "pointer",borderStyle: "solid",borderWidth: "17px 0 17px 30px",margin:"20px 0px 0px 23px"}}>
+            </div>
         </div>
-        </div>
-       
     </div>
+    <br/>
+    <FormMovie/>
     <p style={{fontFamily:"Cursive",fontSize:"30px", padding:"40px"}}><b>MOVIES</b></p>
     <Container style={{width:"75%"}}>
         {error}
