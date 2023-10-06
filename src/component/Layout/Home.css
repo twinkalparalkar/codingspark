@@ -1,5 +1,5 @@
 
-@dim : 60px;
+@dim : 320px;
 
 .spinner {
    height:@dim;
@@ -7,8 +7,8 @@
  margin:0 auto;
    position:relative;
   position: absolute;
-  top:50%;
-  left:50%;
+  top:100%;
+  left:70%;
   margin: -(@dim/2) 0 0 -(@dim/2);
    -webkit-animation: rotation 1s infinite linear;
    -moz-animation: rotation 1s infinite linear;

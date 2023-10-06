@@ -1,22 +1,23 @@
 import { Container,Row,Col,Button } from "react-bootstrap"
-import {useState }from 'react'
+import {useState,useEffect }from 'react'
 import "./Home.css"
 function Home(){
     const [movie,setMovie]=useState([])
     const [isLoading,setLoading]=useState(false)
     const [error,setError]=useState(null)
 
+    useEffect(()=>{
+        MovieHandler();
+    },[])
     async function MovieHandler(){
         setLoading(true)
         setError(null)
         try{
             const res=await fetch("https://swapi.dev/api/films/")
-        if(!res.ok){
-            throw new Error("Something went wrong ....Retrying")}
-
-        const data=await res.json()
-        const transformeddata=data.results.map(movie=>{
-                return {id:movie.episode_id,
+            if(!res.ok){throw new Error("Something went wrong ....Retrying")}
+            const data=await res.json()
+            const transformeddata=data.results.map(movie=>{
+                    return {id:movie.episode_id,
                 title:movie.title,
                 producer:movie.producer,
                 release_date:movie.release_date
