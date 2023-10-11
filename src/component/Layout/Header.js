@@ -3,6 +3,7 @@ import { Navbar } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import Modalcart from './Modal';
+import {NavLink} from 'react-router-dom'
 import { useState,useContext } from 'react';
 import CartContext from '../../store/cart-context';
 
@@ -10,7 +11,7 @@ function Header() {
   const cartCtx=useContext(CartContext)
   const linkStyle = {
     color: 'white',
-    marginLeft:"80px"
+    marginLeft:"50px"
   };
   const [show, setShow] = useState(false);
 
@@ -23,10 +24,19 @@ function Header() {
       <Navbar bg="dark" >
         <Container>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="justify-content-center" style={{marginLeft:'300px'}}>
-              <Nav.Link href="/index" style={linkStyle}  >HOME</Nav.Link>
-              <Nav.Link href="#link" style={linkStyle}  >STORE</Nav.Link>
-              <Nav.Link href="/about" style={linkStyle}  >ABOUT</Nav.Link>
+            <Nav className="justify-content-center" style={{marginLeft:'180px'}}>
+              <Nav.Link>
+                <NavLink to="/home" style={linkStyle} >HOME</NavLink>
+              </Nav.Link>
+              <Nav.Link>
+                <NavLink to="#link" style={linkStyle} >STORE</NavLink>
+              </Nav.Link>
+              <Nav.Link>
+                <NavLink to="/about" style={linkStyle} >ABOUT</NavLink>
+              </Nav.Link>
+              <Nav.Link>
+              <NavLink to="/contact" style={linkStyle} >CONTACT US</NavLink>
+              </Nav.Link>
               <Button onClick={handleShow} style={{marginLeft:'300px',backgroundColor:"black",
               color:"white",border:'solid 3px white'}}>Cart</Button>
               <span style={{color:"white",marginLeft:'10px'}}>{Total}</span>

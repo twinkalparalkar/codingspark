@@ -6,9 +6,10 @@ import CartProvider from "./store/CartProvider";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import "../node_modules/react-bootstrap/dist/react-bootstrap"
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import About from './component/Layout/About';
 import Home from './component/Layout/Home';
+import Contact from './component/Layout/Contact';
 
 let Dummy_data= [
   {
@@ -37,21 +38,17 @@ let Dummy_data= [
   }
 ]
 
-const router1=createBrowserRouter([
-  {path:"/",element:<AlbumList items={Dummy_data}/>},
-  {path:"/about",element:<About/>},
-  {path:"/index",element:<Home/>}
-])
 
   
 function App() {
   return (
     <CartProvider >
-    
     <div className="App">
       <Header/>
-      <RouterProvider router={router1}/>
-      
+      <Route exact path='/'><AlbumList items={Dummy_data}/></Route>
+      <Route path='/about'><About/></Route>
+      <Route path='/home'><Home/></Route>
+      <Route path='/contact'><Contact/></Route>
       <Footer/>
     </div>
     </CartProvider>

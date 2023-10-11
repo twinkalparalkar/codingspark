@@ -12,8 +12,7 @@ function FormMovie(props){
     const Changerelease_date=(e)=>{
         setrelease_date(e.target.value)
     }
-    // console.log(title,release_date)
-
+    
     const OnSubmitHandler=(e)=>{
         e.preventDefault()
 
@@ -28,7 +27,6 @@ function FormMovie(props){
         setrelease_date("")
         
         props.onAddData(movie)
-
     }
     return (
 <div style={{width:"200px",height:"250px",backgroundColor:"#56CCF2",alignItems:"center",marginLeft:"500px"}}>
