@@ -2,6 +2,7 @@ import { Card,Button } from "react-bootstrap";
 import React,{ useContext} from "react";
 import CartContext from "../../store/cart-context";
 import './AlbumItem.css'
+import { Link } from "react-router-dom";
 
 function AlbumItem(props){
     const cartCxt=useContext(CartContext)
@@ -19,7 +20,9 @@ function AlbumItem(props){
     }
     return(
         <Card style={{ width: '18rem',border:"None"}}>
+        <Link to={`/product/${props.itemKey}`}>
             <Card.Title>{props.title}</Card.Title>
+        </Link>
             <div className="image-container ">
             <Card.Img style={{width:"250px",height:"250px"}} src={props.imageUrl} className="zoom-image" />
             </div>
@@ -32,6 +35,7 @@ function AlbumItem(props){
                 </Card.Text>
                 
             </Card.Body>
+        
         </Card>
     )
 }
