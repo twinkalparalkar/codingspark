@@ -16,15 +16,16 @@ function AlbumItem(props){
             quantity:1
             }
         cartCxt.addItem({...new_item,})
-        console.log("Cart context after adding item:",cartCxt.items);
+        console.log("Cart context after adding item:",cartCxt.items,props.imageUrl);
     }
+    console.log(props.imageUrl[0]);
     return(
         <Card style={{ width: '18rem',border:"None"}}>
         <Link to={`/product/${props.itemKey}`}>
             <Card.Title>{props.title}</Card.Title>
         </Link>
             <div className="image-container ">
-            <Card.Img style={{width:"250px",height:"250px"}} src={props.imageUrl} className="zoom-image" />
+            <Card.Img style={{width:"250px",height:"250px"}} src={props.imageUrl[0]} className="zoom-image" />
             </div>
              <Card.Body>
                 

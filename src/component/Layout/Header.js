@@ -29,7 +29,7 @@ function Header() {
                 <NavLink to="/home" style={linkStyle} >HOME</NavLink>
               </Nav.Link>
               <Nav.Link>
-                <NavLink to="#link" style={linkStyle} >STORE</NavLink>
+                <NavLink to="/product" style={linkStyle} >STORE</NavLink>
               </Nav.Link>
               <Nav.Link>
                 <NavLink to="/about" style={linkStyle} >ABOUT</NavLink>
