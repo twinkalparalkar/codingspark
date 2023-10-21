@@ -1,49 +1,69 @@
-import { useState,useRef } from "react"
+import { useState,useRef,useContext } from "react"
+import {useHistory} from 'react-router-dom'
+
+import CartContext from "../../store/cart-context"
 
 const AuthForm=()=>{
+    const history=useHistory()
     const [isLogin,setIsLogin]=useState(true)
     const [isLoading,setIsLoading]=useState(false)
-   const emailInputRef=useRef()
-   const passwordInputRef=useRef() 
+    const authctx=useContext(CartContext)
+
+    const emailInputRef=useRef()
+    const passwordInputRef=useRef() 
 
     const switchAuthModuleHandler=()=>{
         setIsLogin((prev)=>!prev)
     }
+    
     const submitHandler=(event)=>{
         event.preventDefault()
 
-        const enteredemail=emailInputRef.current.values
-        const enteredpassword=passwordInputRef.current.values
+        const enteredemail=emailInputRef.current.value
+        const enteredpassword=passwordInputRef.current.value
 
+        setIsLoading(true)
+        let url;
         if(isLogin){
+         url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAdjPXJDLJb2Q6jYJ3_THQv4HlQM-6JZ1U'
 
         }else{
-            fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDRVIyXbVzipmwmNR2fXSRzPmGbnDqbQIU',
+            url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAdjPXJDLJb2Q6jYJ3_THQv4HlQM-6JZ1U'
+        }
+        fetch(
+            url,
             {
                 method:"POST",
                 body:JSON.stringify({
                     email:enteredemail,
                     password:enteredpassword,
-                    returmSecureToken:true
+                    returnSecureToken:true
                 }),
-                headers:{ 'Content-Type':'application/json'}
-            }
-            ).then(res=>{
-                setIsLoading(true)
+                headers:{ 
+                    'Content-Type':'application/json'
+                }
+            }).then((res)=>{
+                setIsLoading(false)
                 if(res.ok){
-
+                    return res.json()
                 }else{
-                    return res.json().then(data=>{
-                        let errorMessage
-                        if(data && data.error && data.error.message){
-                            errorMessage=data.error.message
-                        }
-                        alert(errorMessage)
-                        console.log(data)
+                    return res.json().then((data)=>{
+                        let errorMessage='Authentication failed'
+                        // alert(errorMessage)
+                        throw new Error(errorMessage)
                     })
                 }
+            }).then(data=>{
+                const expirationTime=new Date(new Date().getTime()+(+data.expiresIn*1000))
+                authctx.login(data.idToken,expirationTime.toISOString())
+                console.log(data,authctx,authctx.isLoggedIn)
+                history.replace('/product')
             })
-        }
+            .catch(err=>{
+                console.log("eerr",err)
+                alert(err.message)
+            })
+        
     }
     return (
 <div>

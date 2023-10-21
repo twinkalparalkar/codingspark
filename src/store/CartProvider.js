@@ -1,9 +1,56 @@
 import CartContext from "./cart-context";
-import React, {useState} from "react";
+import React, {useState,useEffect,useCallback} from "react";
+let logoutTimer;
+const calculateRenmaining =(expirationTime)=>{
+    const currentTime= new Date().getTime()
+    const adjExpirationTime=new Date(expirationTime).getTime()
+
+    const remainingDuration=adjExpirationTime-currentTime
+    return remainingDuration
+}
+const retrieveStoreToken=()=>{
+    const storedToken=localStorage.getItem('token')
+    const storedExpirationDate=localStorage.getItem('expirationTime')
+
+    const remainingTime=calculateRenmaining(storedExpirationDate)
+
+    if(remainingTime<=3600){
+        localStorage.removeItem('token')
+        localStorage.removeItem('expirationTime')
+        return null;
+    }
+    return {
+        token:storedToken,
+        duration:remainingTime}
+}
 
 const CartProvider = (props) => {
+    const tokenData=retrieveStoreToken()
+    let initialToken
+    if(tokenData){
+    initialToken=tokenData.token;
+    }
     const [cartItems, setCartItems] = useState([]); 
-            
+    const [token, setToken] = useState(initialToken); 
+    const userIsLoggedIn=!!token;
+    // console.log("local",initialToken)
+    const logoutHandler=useCallback(()=>{
+        setToken(null)
+        localStorage.removeItem('token')
+        localStorage.removeItem('expirationTime')
+        if(logoutTimer){
+            clearTimeout(logoutTimer)
+        }
+    },[]  )
+    const loginHandler=(token,expirationtime)=>{
+        setToken(token)
+        localStorage.setItem('token',token)
+        localStorage.setItem('expirationTime',expirationtime)
+        const remainingTime=calculateRenmaining(expirationtime)
+        logoutTimer= setTimeout(logoutHandler,remainingTime);
+        
+    }
+       
     const addItemHandler = (item) => {
         console.log("kk",item)
             const updatedCartItems = [...cartItems];
@@ -31,11 +78,22 @@ const CartProvider = (props) => {
             }
             setCartItems(updatedCartItems); 
         };
-        
+       
+    useEffect(()=>{
+        if(tokenData){
+            console.log(tokenData.duration)
+            logoutTimer=setTimeout(logoutHandler,tokenData.duration);
+        }
+    },[tokenData, logoutHandler])
     const cartContext = {
         items: cartItems,
         addItem: addItemHandler,
-        removeItem: removeItemHandler
+        removeItem: removeItemHandler,
+        
+        token:token,
+        isLoggedIn:userIsLoggedIn,
+        login:loginHandler,
+        logout:logoutHandler
     };
    
     return (

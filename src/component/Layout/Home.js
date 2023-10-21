@@ -14,7 +14,7 @@ function Home(){
         setLoading(true)
         setError(null)
         try{
-            const res=await fetch("https://react-http-43b82-default-rtdb.firebaseio.com/movies.json")
+            const res=await fetch("https://react3-6931f-default-rtdb.firebaseio.com/movies.json")
             if(!res.ok){throw new Error("Something went wrong ....Retrying")}
             const data=await res.json()
 
@@ -44,7 +44,7 @@ function Home(){
 
     async function onAddDataHandler(movie){
         console.log("kk",movie)
-        const response= await fetch("https://react-http-43b82-default-rtdb.firebaseio.com/movies.json",
+        const response= await fetch("https://react3-6931f-default-rtdb.firebaseio.com/movies.json",
             {method:"POST",
             body:JSON.stringify(movie),
             headers:{
@@ -59,7 +59,7 @@ function Home(){
     async function onDeleteHandler(e){
         e.preventDefault()
         console.log("delete",e.target.id)
-        const response=await fetch(`https://react-http-43b82-default-rtdb.firebaseio.com/movies/${e.target.id}.json`,
+        const response=await fetch(`https://react3-6931f-default-rtdb.firebaseio.com/movies/${e.target.id}.json`,
             {method:"DELETE"
             });
        

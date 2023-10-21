@@ -9,6 +9,11 @@ import CartContext from '../../store/cart-context';
 
 function Header() {
   const cartCtx=useContext(CartContext)
+  const isLoggedIn=cartCtx.isLoggedIn;
+
+  const logoutHandler=()=>{
+  cartCtx.logout()
+  }
   const linkStyle = {
     color: 'white',
     marginLeft:"50px"
@@ -25,18 +30,32 @@ function Header() {
         <Container>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="justify-content-center" style={{marginLeft:'180px'}}>
-              <Nav.Link>
-                <NavLink to="/home" style={linkStyle} >HOME</NavLink>
-              </Nav.Link>
-              <Nav.Link>
+              {!isLoggedIn &&(<Nav.Link>
+                <NavLink to="/auth" style={linkStyle} >LOGIN</NavLink>
+              </Nav.Link>)
+            }
+            {isLoggedIn &&(<Nav.Link>
+            <NavLink to="/home" style={linkStyle} >HOME</NavLink>
+          </Nav.Link>)}
+          {isLoggedIn &&( <Nav.Link>
                 <NavLink to="/product" style={linkStyle} >STORE</NavLink>
-              </Nav.Link>
-              <Nav.Link>
+              </Nav.Link>)}
+              {!isLoggedIn &&(<Nav.Link>
                 <NavLink to="/about" style={linkStyle} >ABOUT</NavLink>
-              </Nav.Link>
-              <Nav.Link>
+              </Nav.Link>)}
+              {!isLoggedIn &&( <Nav.Link>
               <NavLink to="/contact" style={linkStyle} >CONTACT US</NavLink>
+              </Nav.Link>)}
+              {isLoggedIn &&(
+                <Nav.Link>
+              <NavLink to="/profile" style={linkStyle} >Change Password</NavLink>
               </Nav.Link>
+              )}
+              {isLoggedIn &&(
+                <Nav.Link>
+              <NavLink to="/auth" onClick={logoutHandler} style={linkStyle} >LOGOUT</NavLink>
+              </Nav.Link>
+              )}
               <Button onClick={handleShow} style={{marginLeft:'300px',backgroundColor:"black",
               color:"white",border:'solid 3px white'}}>Cart</Button>
               <span style={{color:"white",marginLeft:'10px'}}>{Total}</span>

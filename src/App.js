@@ -12,6 +12,9 @@ import Home from './component/Layout/Home';
 import Contact from './component/Layout/Contact';
 import ProductDetail from './component/Layout/ProductDetail';
 import AuthPage from './component/Auth/AuthPage';
+import Profilepage from './component/Auth/Profilepage';
+import { useContext } from 'react';
+import CartContext from './store/cart-context';
 
 let Dummy_data= [
   {
@@ -45,18 +48,45 @@ let Dummy_data= [
 ]
 
 function App() {
-  return (
-    <CartProvider >
-    <div className="App">
-      <Header/>
-      <Switch>
-      <Route path='/auth'><AuthPage/></Route>
-      <Route path='/' exact><Redirect to="/product"/></Route>
-      <Route path='/product' exact><AlbumList items={Dummy_data}/></Route>
+  const cartCtx=useContext(CartContext)
+  const isLoggedIn=cartCtx.isLoggedIn;
+   console.log(isLoggedIn)
+return (
+<CartProvider >
+  <div className="App">
+    <Header/>
+    <Switch>
+    {!isLoggedIn &&(<Route path='/auth'>
+        <AuthPage/>
+      </Route>)}
+        <Route path='/product' exact >
+        {!isLoggedIn &&(<AlbumList items={Dummy_data}/>)}
+         {isLoggedIn && (<Redirect to='/auth'/>)}
+        </Route>
+    
+
       <Route path='/about'><About/></Route>
-      <Route path='/home'><Home/></Route>
       <Route path='/contact'><Contact/></Route>
-      <Route path='/product/:productId' ><ProductDetail items={Dummy_data}/></Route>
+      
+      <Route path='/profile' >
+        {!isLoggedIn && (<Profilepage/>)}
+        {isLoggedIn && (<Redirect to='/auth'/>)}
+      </Route>
+
+      
+      <Route path='/home'>
+      {!isLoggedIn &&( <Home/>)}
+        {isLoggedIn &&( 
+          <Redirect to='/auth'/>
+          )}
+      </Route>
+      
+      <Route path='/product/:productId' >
+        <ProductDetail items={Dummy_data}/>
+       
+      </Route>
+
+
       </Switch>
       <Footer/>
     </div>

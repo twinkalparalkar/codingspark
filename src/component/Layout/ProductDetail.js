@@ -6,7 +6,7 @@ function ProductDetail(props) {
    
     const { productId } = useParams();
     const element = props.items.find((item) => item.id === productId);
-    console.log(element.imageUrl[0])
+    console.log("ooppp",element.imageUrl[0], productId)
     const [mainImage,setMainImage]=useState(element.imageUrl[0])
    
     if (!element) {
