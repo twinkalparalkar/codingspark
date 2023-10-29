@@ -9,16 +9,38 @@ function ProfileForm(props){
     const history=useHistory()
 
     const contctx=useContext(Contextapi)
+
+    let get_url = `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${Configure.firebase_key}&idToken=${contctx.token}`;
+    fetch(get_url, {method: "POST"})
+        .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error('Failed to fetch user data.');
+              }
+        })
+        .then((data) => {
+              console.log("kk",data.users[0].displayName,data.users[0].photoUrl);
+              full_name.current.value=data.users[0].displayName
+              photo_url.current.value=data.users[0].photoUrl
+            })
+        .catch((error) => {
+              console.error(error);
+            });
+
     const OnSubmitHandler=(e)=>{
         e.preventDefault()
+
         const fullname=full_name.current.value
         const Photourl=photo_url.current.value
         
         let url=`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${Configure.firebase_key}`
+        
         if (!fullname || !Photourl) {
             alert("Please fill in all the required fields.");
             return;}      
         else{
+            
             fetch(
                 url,
             {
@@ -52,6 +74,8 @@ function ProfileForm(props){
                 console.log("eerr",err)
                 alert(err.message)
             })
+
+
         }
     }
     return(
