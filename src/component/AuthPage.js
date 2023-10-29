@@ -1,6 +1,7 @@
 import Authform from "./Authform";
 
 function AuthPage(){
+    
     return (
 <div>
         <Authform/>
