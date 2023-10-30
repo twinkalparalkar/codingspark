@@ -38,7 +38,8 @@ function ProfileForm(props){
         
         if (!fullname || !Photourl) {
             alert("Please fill in all the required fields.");
-            return;}      
+            return;
+        }      
         else{
             
             fetch(
@@ -74,8 +75,6 @@ function ProfileForm(props){
                 console.log("eerr",err)
                 alert(err.message)
             })
-
-
         }
     }
     return(

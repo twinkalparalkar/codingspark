@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from "react"
 import {Configure} from "../Configure"
 import {useHistory} from 'react-router-dom'
-import { Link } from "react-router-dom/cjs/react-router-dom"
+import { Link } from "react-router-dom"
 import Contextapi from "../store/context-api"
 
 
@@ -69,7 +69,7 @@ const onSubmitHandler=(e)=>{
                 // console.log(data.idToken,contctx)
                 contctx.login(data.idToken)
                 
-                history.replace('/')
+                history.replace('/home')
                alert("Welcome To Expense Trackr")
             //    console.log(contctx.token)
             })
