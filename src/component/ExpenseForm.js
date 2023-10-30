@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React,{ useRef, useState,useEffect } from "react";
 
 function ExpenseForm(props){
     const [list1,setlist]=useState([])
@@ -6,7 +6,7 @@ function ExpenseForm(props){
     const description=useRef()
     const category=useRef()
     
-    const onSubmithandler=(e)=>{
+    async function onSubmithandler(e){
         e.preventDefault()
         const enteredamount=amount.current.value
         const entereddescription=description.current.value
@@ -22,7 +22,45 @@ function ExpenseForm(props){
     setlist((prev)=>{
         return [...prev,data]
     })
+    const response= await fetch("https://react3-6931f-default-rtdb.firebaseio.com/expense.json",
+            {method:"POST",
+            body:JSON.stringify(data),
+            headers:{
+                'Content-Type':'application/json'
+            }
+            });
+    console.log(response)
+    // https://react3-6931f-default-rtdb.firebaseio.com/
+    
     console.log(list1)
+    }
+    useEffect(()=>{
+       display()
+    },[])
+    async function display(){
+        try{
+            const res=await fetch("https://react3-6931f-default-rtdb.firebaseio.com/expense.json")
+            if(!res.ok){throw new Error("Something went wrong ....Retrying")}
+            const data=await res.json()
+
+            const loadedExpense=[]
+
+            for(const key in data){
+                loadedExpense.push({
+                    id:data[key].id,
+                    amount:data[key].amount,
+                    description:data[key].description,
+                    category:data[key].category
+                }
+                    
+                )
+            }
+            setlist(loadedExpense)
+            
+        }
+        catch(error){
+            console.log(error.message)
+        }
     }
 
     return(
