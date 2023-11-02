@@ -1,39 +1,70 @@
 import React,{ useRef, useState,useEffect } from "react";
+import ExpenseList from "./ExpenseList";
 
 function ExpenseForm(props){
     const [list1,setlist]=useState([])
+    const [IsEdit,setEdit]=useState(false)
+    const [ExpenseId,setId]=useState(null)
     const amount=useRef()
     const description=useRef()
     const category=useRef()
     
-    async function onSubmithandler(e){
+async function onSubmithandler(e){
         e.preventDefault()
         const enteredamount=amount.current.value
         const entereddescription=description.current.value
         const enteredcategory=category.current.value
-    console.log(enteredamount,enteredcategory,entereddescription)
-
-    const data={
-        id:Math.random(),
-        amount:enteredamount,
-        category:enteredcategory,
-        description:entereddescription
-    }
-    setlist((prev)=>{
-        return [...prev,data]
-    })
-    const response= await fetch("https://react3-6931f-default-rtdb.firebaseio.com/expense.json",
-            {method:"POST",
-            body:JSON.stringify(data),
-            headers:{
-                'Content-Type':'application/json'
+        
+        const data={
+            amount:enteredamount,
+            category:enteredcategory,
+            description:entereddescription
+        }
+        setlist((prev)=>{
+            return [...prev,data]
+        })
+        if(IsEdit===true){
+            try{
+                const res=await fetch(`https://react3-6931f-default-rtdb.firebaseio.com/expense/${ExpenseId}.json`, 
+                {method:"PUT",
+                body:JSON.stringify(data),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+                });
+                setEdit(false)
+                if(!res.ok){throw new Error("Something went wrong ....Retrying")}
             }
-            });
-    console.log(response)
-    // https://react3-6931f-default-rtdb.firebaseio.com/
-    
-    console.log(list1)
+            catch(error){
+                console.log(error.message)
+            }
+        }
+        else{
+           await fetch("https://react3-6931f-default-rtdb.firebaseio.com/expense.json",
+                {method:"POST",
+                body:JSON.stringify(data),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+                });
+            }
+        
+        display()
+        amount.current.value = '';
+        description.current.value = '';
+        category.current.value = 'food';
     }
+
+    function EditData(id){
+        const editedElement=list1.find((item) => item.id === id)
+        setEdit(true)
+        setId(id)
+        
+        amount.current.value = editedElement.amount;
+        description.current.value = editedElement.description;
+        category.current.value = editedElement.category;
+    }
+
     useEffect(()=>{
        display()
     },[])
@@ -47,7 +78,7 @@ function ExpenseForm(props){
 
             for(const key in data){
                 loadedExpense.push({
-                    id:data[key].id,
+                    id:key,
                     amount:data[key].amount,
                     description:data[key].description,
                     category:data[key].category
@@ -76,19 +107,13 @@ function ExpenseForm(props){
         <option>Petrol</option>
         <option>Salary</option>
         </select><br/><br/>
-        <input type="submit"/>
+        {!IsEdit &&<input type="submit"/>}
+        {IsEdit && <input type="submit" value='Edit'/>}
         <button onClick={props.onForm}>Cancel</button>
     </form>
     </div>
-    <ul>
-  <h1>List of Expenses</h1>
-  {list1.map((item) => (
-    <li key={item.id}>
-      <strong>Amount:</strong> {item.amount}, <strong>Category:</strong> {item.category}, <strong>Description:</strong> {item.description}
-    </li>
-  ))}
-</ul>
-
+   
+        <ExpenseList list1={list1} display={display} EditData={EditData}/>
 </div>
     )
 }
