@@ -1,15 +1,18 @@
-import { useContext, useRef, useState } from "react"
+import {  useRef, useState } from "react"
 import {Configure} from "../Configure"
 import {useHistory} from 'react-router-dom'
 import { Link } from "react-router-dom"
-import Contextapi from "../store/context-api"
-
+// import Contextapi from "../store/context-api"
+import { useSelector, useDispatch } from 'react-redux';
+import {authActions} from '../store/auth'
 
 function Authform(){
 
     const [IsAccount,setAccount]=useState(false)
-    const contctx=useContext(Contextapi)
-    
+    // const contctx=useContext(Contextapi)
+    const dispatch=useDispatch()
+    const token=useSelector((state)=>state.auth.token)
+
     const history=useHistory()
     const AccountHandler=()=>{
         setAccount(!IsAccount)
@@ -66,12 +69,13 @@ const onSubmitHandler=(e)=>{
                     })
                 }
             }).then(data=>{
-                // console.log(data.idToken,contctx)
-                contctx.login(data.idToken)
-                
+                console.log(data.idToken)
+                // contctx.login(data.idToken)
+                dispatch(authActions.login(data.idToken))
+
                 history.replace('/home')
                alert("Welcome To Expense Trackr")
-            //    console.log(contctx.token)
+               console.log(token)
             })
             .catch(err=>{
                 console.log("eerr",err)

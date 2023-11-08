@@ -1,5 +1,27 @@
-function ExpenseList(props){
+import {  useState,useEffect } from "react"
+import { Button } from "react-bootstrap"
 
+function ExpenseList(props){
+  const [Preminum,setPremiunm]=useState(false)
+
+    const total=props.list1.map((item)=>{
+      return item.amount})
+  
+    let total_amount=0
+    for(const k in total){
+      total_amount+=parseInt(total[k])
+    }
+  
+
+   
+    useEffect(() => {
+      if (total_amount > 10000) {
+        setPremiunm(true);
+      }
+    }, [total_amount]);
+  
+    
+    console.log(total_amount,total)
     async function onEditHandler(e){
         e.preventDefault()
 
@@ -21,9 +43,13 @@ function ExpenseList(props){
             console.log(error.message)
         }
     }
-
+  
+    
     return(
         <ul>
+       
+        {Preminum &&<Button>Activate Preminum</Button>}
+        
         <h1>List of Expenses</h1>
         {props.list1.map((item) => (
           <li key={item.id} data-id={item.id}>

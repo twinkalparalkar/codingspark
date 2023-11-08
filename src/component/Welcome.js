@@ -2,12 +2,18 @@ import {useState} from 'react'
 import ProfileForm from './ProfileForm'
 import {Configure} from "../Configure"
 import {useHistory} from "react-router-dom"
-import { useContext } from "react";
-import Contextapi from "../store/context-api";
+// import { useContext } from "react";
+
+// import Contextapi from "../store/context-api";
+import { useSelector } from 'react-redux';
+// import {authActions} from '../store/auth'
 import ExpenseForm from './ExpenseForm';
 
 function Welcome(){
-    const contctx=useContext(Contextapi)
+    // const contctx=useContext(Contextapi)
+    // const dispatch=useDispatch()
+    const token=useSelector((state)=>state.auth.token)
+
     const history =useHistory()
     const [isProfile,setProfile]=useState(false)
 
@@ -22,9 +28,9 @@ function Welcome(){
     const OnMailHandler = (e) => {
         e.preventDefault();
         
-        console.log(contctx.token,Configure.firebase_key)
+        console.log(token,Configure.firebase_key)
         // Construct the URL for sending the OOB code
-        const url = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${Configure.firebase_key}&idToken=${contctx.token}`;
+        const url = `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${Configure.firebase_key}&idToken=${token}`;
       
         fetch(url, {
           method: "POST",

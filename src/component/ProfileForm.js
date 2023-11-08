@@ -1,16 +1,21 @@
-import { useContext, useRef } from "react";
-import Contextapi from "../store/context-api";
+import { useRef } from "react";
+// import Contextapi from "../store/context-api";
 import {Configure} from "../Configure"
 import {useHistory} from "react-router-dom"
+import { useSelector } from 'react-redux';
+// import {authActions} from '../store/auth'
 
 function ProfileForm(props){
+    // const dispatch=useDispatch()
+    const token=useSelector((state)=>state.auth.token)
+
     const full_name=useRef()
     const photo_url=useRef()
     const history=useHistory()
 
-    const contctx=useContext(Contextapi)
+    // const contctx=useContext(Contextapi)
 
-    let get_url = `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${Configure.firebase_key}&idToken=${contctx.token}`;
+    let get_url = `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${Configure.firebase_key}&idToken=${token}`;
     fetch(get_url, {method: "POST"})
         .then((response) => {
               if (response.ok) {
@@ -49,7 +54,7 @@ function ProfileForm(props){
             body:JSON.stringify({
                 displayName:fullname,
                 photoUrl:Photourl,
-                idToken:contctx.token,
+                idToken:token,
                 returnSecureToken:true
             }),
             headers:{ 
@@ -67,7 +72,7 @@ function ProfileForm(props){
                     })
                 }
             }).then(data=>{
-                history.replace('/')
+                history.replace('/home')
                 alert("Profile completed 100%")
                 props.onSubmit()
             })

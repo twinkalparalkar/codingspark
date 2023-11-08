@@ -1,12 +1,16 @@
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
 import { Nav,Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import Contextapi from "../store/context-api";
+// import Contextapi from "../store/context-api";
+import {  useDispatch } from 'react-redux';
+import {authActions} from '../store/auth'
 
 function Header1() {
-    const contctx=useContext(Contextapi)
+    // const contctx=useContext(Contextapi)
+    const dispatch=useDispatch()
+    
     const onLogout=()=>{
-        contctx.logout()
+        dispatch(authActions.logout())
     }
   return (
     <div style={{ backgroundColor: "white" }}>

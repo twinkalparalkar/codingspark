@@ -1,5 +1,6 @@
 import React,{ useRef, useState,useEffect } from "react";
 import ExpenseList from "./ExpenseList";
+import { Button } from "react-bootstrap"
 
 function ExpenseForm(props){
     const [list1,setlist]=useState([])
@@ -93,10 +94,29 @@ async function onSubmithandler(e){
             console.log(error.message)
         }
     }
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
 
+  const onToggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
+
+  const bodyStyle = isDarkTheme ? { background: 'black', color: 'white' } : {};
+
+  const ondownloadHandler = () => {
+    const list1String = JSON.stringify(list1);
+    const blob = new Blob([list1String], { type: 'application/json' });
+  
+    // Get the download link element
+    const downloadLink = document.getElementById('downloadLink');
+    downloadLink.href = URL.createObjectURL(blob);
+  
+    // Trigger a click event to prompt the download
+    downloadLink.click();
+  };
+  
     return(
-<div>
-<div style={{backgroundColor:"white",border:"Solid black 5px",width:"20%",height:"40%",margin:"10px 100px 10px 400px",padding:"25px"}}>
+<div style={bodyStyle}>
+<div style={{backgroundColor:"lightcoral",border:"Solid black 5px",width:"20%",height:"40%",margin:"10px 100px 10px 400px",padding:"25px"}}>
     <h2>Add Expense</h2>    
 <form onSubmit={onSubmithandler}>
         <label>Amount:</label><input type="number" ref={amount}/>
@@ -112,7 +132,9 @@ async function onSubmithandler(e){
         <button onClick={props.onForm}>Cancel</button>
     </form>
     </div>
-   
+    <Button onClick={ondownloadHandler}>Download File of Expense</Button>
+<a id="downloadLink" style={{ display: 'none' }} download="file1.csv"></a>
+   <Button onClick={onToggleTheme}>Toggle Theme</Button>
         <ExpenseList list1={list1} display={display} EditData={EditData}/>
 </div>
     )
