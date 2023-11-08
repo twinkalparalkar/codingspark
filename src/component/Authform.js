@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux';
 import {authActions} from '../store/auth'
 
+import {Button,Form} from 'react-bootstrap'
 function Authform(){
 
     const [IsAccount,setAccount]=useState(false)
@@ -86,19 +87,35 @@ const onSubmitHandler=(e)=>{
 <div style={{backgroundColor:"white",border:"Solid black 5px",width:"20%",height:"40%",margin:"100px 100px 100px 400px",padding:"25px"}}>
 <h4>{!IsAccount ? "Sign-Up" : "Login"}</h4>
 
-<form onSubmit={onSubmitHandler}>
-    <input placeholder="Email" type="email" style={input} ref={emailref}/><br/>
-    <input placeholder="Password" type="password"  style={input} ref={passwordref}/><br/>
-    {!IsAccount && <input placeholder="Confirm Password" type="password"   style={input} ref={confirmpasswordref}/>}<br/>
-    <input value={!IsAccount ? "Sign-Up" : "Login"} type="submit"  style={input}/>
-</form>
-
+<Form onSubmit={onSubmitHandler}>
+    <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control placeholder="Email" type="email" style={input} ref={emailref}></Form.Control> 
+    </Form.Group>
+    <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Control placeholder="Password" type="password"  style={input} ref={passwordref}></Form.Control>
+    </Form.Group>
+    {!IsAccount && 
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control placeholder="Confirm Password" type="password"   style={input} ref={confirmpasswordref}></Form.Control>
+        </Form.Group>
+    }
+    <Button variant="primary"  type="submit"  style={input}>
+    {!IsAccount ? "Sign-Up" : "Login"}
+    </Button>
+    
+</Form>
 {IsAccount && <Link to="/forgetpassword">Forget password?</Link>}<br/><br/>
 <div onClick={AccountHandler} style={{backgroundColor:"lightblue",border:"Solid blue 5px",width:"110%",height:"70px",marginLeft:"-10px",padding:"10px"}}>
     {!IsAccount ? "Have an account already?Login" : "Don't have an account?Sign-Up"}
 </div>
 </div>
+
+
+
     )
 }
 
 export default Authform;
+
+
+
