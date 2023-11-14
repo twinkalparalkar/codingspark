@@ -3,7 +3,7 @@ import {Configure} from "../Configure"
 import {useHistory} from 'react-router-dom'
 import { Link } from "react-router-dom"
 // import Contextapi from "../store/context-api"
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import {authActions} from '../store/auth'
 
 import {Button,Form} from 'react-bootstrap'
@@ -12,7 +12,7 @@ function Authform(){
     const [IsAccount,setAccount]=useState(false)
     // const contctx=useContext(Contextapi)
     const dispatch=useDispatch()
-    const token=useSelector((state)=>state.auth.token)
+    // const token=useSelector((state)=>state.auth.token)
 
     const history=useHistory()
     const AccountHandler=()=>{
@@ -70,13 +70,13 @@ const onSubmitHandler=(e)=>{
                     })
                 }
             }).then(data=>{
-                console.log(data.idToken)
+                console.log(data)
                 // contctx.login(data.idToken)
-                dispatch(authActions.login(data.idToken))
+                dispatch(authActions.login({mailofuser:data.email,token:data.idToken}))
 
                 history.replace('/home')
                alert("Welcome To Expense Trackr")
-               console.log(token)
+               
             })
             .catch(err=>{
                 console.log("eerr",err)
@@ -95,7 +95,7 @@ const onSubmitHandler=(e)=>{
         <Form.Control placeholder="Password" type="password"  style={input} ref={passwordref}></Form.Control>
     </Form.Group>
     {!IsAccount && 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="formBasicPassword1">
             <Form.Control placeholder="Confirm Password" type="password"   style={input} ref={confirmpasswordref}></Form.Control>
         </Form.Group>
     }
@@ -116,6 +116,4 @@ const onSubmitHandler=(e)=>{
 }
 
 export default Authform;
-
-
 

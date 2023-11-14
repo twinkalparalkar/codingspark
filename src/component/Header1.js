@@ -27,6 +27,9 @@ function Header1() {
           <NavLink to="/about">About us</NavLink>
         </Nav.Link>
         <Nav.Link>
+          <NavLink to="/mail">Mail</NavLink>
+        </Nav.Link>
+        <Nav.Link>
           <NavLink to="/auth" onClick={onLogout}>Logout</NavLink>
         </Nav.Link>
       </Nav>
