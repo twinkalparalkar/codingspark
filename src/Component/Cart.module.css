@@ -1,0 +1,25 @@
+.button1{
+    background-color:  rgba(6, 1, 1, 0.292);
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 35px;
+    padding:15px ;
+    width: 200px ;
+    color:aliceblue;
+}
+.icon1{
+    width: 20px;
+    height:20px ;
+    background-color: white;
+    margin-right: 15px;
+}
+
+.quantity1{
+    width: 50px;
+    height:6px ;
+    background-color:darkred;
+    border-radius: 15px;
+    padding: 2px 12px 2px 12px;
+    margin-left: 15px;
+}
+
